@@ -13,6 +13,7 @@ _.each(tnames, function(name) {
 });
 
 function doRequest(name, url) {
+    trusts[name].data = [];
     request(url, function(error,resp,body) {
         if(!error && resp.statusCode === 200) {
             var lines = body.split('\n');
