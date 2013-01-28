@@ -2,68 +2,15 @@ var restify = require('restify'),
     request = require('request'),
     _       = require('underscore');
 
-var trusts = {
-    phoenix: {
-        url: 'http://www.seligson.fi/graafit/phoenix.csv',
+var tnames = ['phoenix', 'phoebus','pharos','russia','suomi','eurooppa','aasia','pohjoisamerikka','kehittyva','global-brands','global-pharma','euroobligaatio','eurocorporate','rahamarkkina','omx25'];
+
+var trusts = {};
+_.each(tnames, function(name) {
+    trusts[name] = {
+        url: 'http://www.seligson.fi/graafit/'+name+'.csv',
         data: []
-    },
-    phoebus: {
-        url: 'http://www.seligson.fi/graafit/phoebus.csv',
-        data: []
-    },
-    pharos: {
-        url: 'http://www.seligson.fi/graafit/pharos.csv',
-        data: []
-    },
-    russia: {
-        url: 'http://www.seligson.fi/graafit/russia.csv',
-        data: []
-    },
-    suomi: {
-        url: 'http://www.seligson.fi/graafit/suomi.csv',
-        data: []
-    },
-    eurooppa: {
-        url: 'http://www.seligson.fi/graafit/eurooppa.csv',
-        data: []
-    },
-    aasia: {
-        url: 'http://www.seligson.fi/graafit/aasia.csv',
-        data: []
-    },
-    pohjoisamerikka: {
-        url: 'http://www.seligson.fi/graafit/pohjoisamerikka.csv',
-        data: []
-    },
-    kehittyva: {
-        url: 'http://www.seligson.fi/graafit/kehittyva.csv',
-        data: []
-    },
-    'global-brands': {
-        url: 'http://www.seligson.fi/graafit/global-brands.csv',
-        data: []
-    },
-    'global-pharma': {
-        url: 'http://www.seligson.fi/graafit/global-pharma.csv',
-        data: []
-    },
-    euroobligaatio: {
-        url: 'http://www.seligson.fi/graafit/euroobligaatio.csv',
-        data: []
-    },
-    eurocorporate: {
-        url: 'http://www.seligson.fi/graafit/eurocorporate.csv',
-        data: []
-    },
-    rahamarkkina: {
-        url: 'http://www.seligson.fi/graafit/rahamarkkina.csv',
-        data: []
-    },
-    omxh25: {
-        url: 'http://www.seligson.fi/graafit/omxh25.csv',
-        data: []
-    }
-};
+    };
+});
 
 function doRequest(name, url) {
     request(url, function(error,resp,body) {
